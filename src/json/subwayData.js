@@ -1,3 +1,10 @@
+import image1 from "../assets/WEggCheese.png";
+import image2 from "../assets/CHEggCheese.png";
+import image3 from "../assets/VegDelite.png";
+import image4 from "../assets/mexican-patty.png";
+import image5 from "../assets/CornPeas.png";
+import image6 from "../assets/ChickenTeriyaki.png";
+
 const subways = [
   {
     name: "WESTERN EGG & CHEESE",
@@ -9,7 +16,7 @@ const subways = [
       },
     ],
     category: "nonveg",
-    image: "https://www.dominos.co.in/files/items/Pepper_Barbeque.jpg",
+    image: image1,
     description: "Pepper Barbecue Chicken I Cheese",
   },
 
@@ -23,7 +30,7 @@ const subways = [
       },
     ],
     category: "nonveg",
-    image: "https://www.dominos.co.in/files/items/Pepper_Barbeque.jpg",
+    image: image2,
     description: "Pepper Barbecue Chicken I Cheese",
   },
 
@@ -37,7 +44,7 @@ const subways = [
       },
     ],
     category: "veg",
-    image: "https://www.dominos.co.in/files/items/Pepper_Barbeque.jpg",
+    image: image3,
     description: "Pepper Barbecue Chicken I Cheese",
   },
 
@@ -51,7 +58,7 @@ const subways = [
       },
     ],
     category: "veg",
-    image: "https://www.dominos.co.in/files/items/Pepper_Barbeque.jpg",
+    image: image4,
     description: "Pepper Barbecue Chicken I Cheese",
   },
 
@@ -65,12 +72,12 @@ const subways = [
       },
     ],
     category: "veg",
-    image: "https://www.dominos.co.in/files/items/Pepper_Barbeque.jpg",
+    image: image5,
     description: "Pepper Barbecue Chicken I Cheese",
   },
 
   {
-    name: "CHICKEN TIKKA",
+    name: "CHICKEN TERIYAKI",
     varients: ["six inch", "footlong"],
     prices: [
       {
@@ -79,7 +86,7 @@ const subways = [
       },
     ],
     category: "nonveg",
-    image: "https://www.dominos.co.in/files/items/Pepper_Barbeque.jpg",
+    image: image6,
     description: "Pepper Barbecue Chicken I Cheese",
   },
 ];
