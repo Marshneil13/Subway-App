@@ -4,10 +4,13 @@ import image3 from "../assets/VegDelite.png";
 import image4 from "../assets/mexican-patty.png";
 import image5 from "../assets/CornPeas.png";
 import image6 from "../assets/ChickenTeriyaki.png";
+import veg from "../assets/icons8-vegetarian-food-symbol-48.png";
+import nonveg from "../assets/icons8-non-vegetarian-food-symbol-48.png";
 
 const subways = [
   {
     name: "WESTERN EGG & CHEESE",
+    icon: nonveg,
     varients: ["six inch", "footlong"],
     prices: [
       {
@@ -22,6 +25,7 @@ const subways = [
 
   {
     name: "CHICKEN HAM, EGG & CHEESE",
+    icon: nonveg,
     varients: ["six inch", "footlong"],
     prices: [
       {
@@ -36,6 +40,7 @@ const subways = [
 
   {
     name: "VEGGIE DELITE",
+    icon: veg,
     varients: ["six inch", "footlong"],
     prices: [
       {
@@ -50,6 +55,7 @@ const subways = [
 
   {
     name: "MEXICAN PATTY",
+    icon: veg,
     varients: ["six inch", "footlong"],
     prices: [
       {
@@ -64,6 +70,7 @@ const subways = [
 
   {
     name: "CORN & PEAS",
+    icon: veg,
     varients: ["six inch", "footlong"],
     prices: [
       {
@@ -78,6 +85,7 @@ const subways = [
 
   {
     name: "CHICKEN TERIYAKI",
+    icon: nonveg,
     varients: ["six inch", "footlong"],
     prices: [
       {

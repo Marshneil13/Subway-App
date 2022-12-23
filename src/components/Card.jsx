@@ -4,7 +4,14 @@ import "../styles/card.css";
 function Card({ subway }) {
   return (
     <div>
-      <h1>{subway.name}</h1>
+      <h1>
+        <img
+          src={subway.icon}
+          alt="icon"
+          style={{ height: "30px", width: "30px" }}
+        />
+        {subway.name}
+      </h1>
       <img
         src={subway.image}
         alt="subway"
