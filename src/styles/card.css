@@ -5,3 +5,19 @@ h1{
 .flex-container{
     display: flex !important;
 }
+
+.btn{
+    background-color: orangered;
+    color: white;
+}
+
+select{
+    box-shadow: none;
+    border-color: black !important;
+}
+
+.card-div{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 32px 0px;
+  padding: 25px !important; 
+  height: 430px !important;
+}

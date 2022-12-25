@@ -11,11 +11,11 @@ const subways = [
   {
     name: "WESTERN EGG & CHEESE",
     icon: nonveg,
-    varients: ["six inch", "footlong"],
+    varients: ["six inch", "foot-long"],
     prices: [
       {
-        "six inch": 200,
-        footlong: 400,
+        "six inch": 130,
+        "foot-long": 230,
       },
     ],
     category: "nonveg",
@@ -26,11 +26,11 @@ const subways = [
   {
     name: "CHICKEN HAM, EGG & CHEESE",
     icon: nonveg,
-    varients: ["six inch", "footlong"],
+    varients: ["six inch", "foot-long"],
     prices: [
       {
-        "six inch": 200,
-        footlong: 400,
+        "six inch": 150,
+        "foot-long": 250,
       },
     ],
     category: "nonveg",
@@ -41,11 +41,11 @@ const subways = [
   {
     name: "VEGGIE DELITE",
     icon: veg,
-    varients: ["six inch", "footlong"],
+    varients: ["six inch", "foot-long"],
     prices: [
       {
-        "six inch": 200,
-        footlong: 400,
+        "six inch": 140,
+        "foot-long": 240,
       },
     ],
     category: "veg",
@@ -56,11 +56,11 @@ const subways = [
   {
     name: "MEXICAN PATTY",
     icon: veg,
-    varients: ["six inch", "footlong"],
+    varients: ["six inch", "foot-long"],
     prices: [
       {
-        "six inch": 200,
-        footlong: 400,
+        "six inch": 140,
+        "foot-long": 240,
       },
     ],
     category: "veg",
@@ -71,11 +71,11 @@ const subways = [
   {
     name: "CORN & PEAS",
     icon: veg,
-    varients: ["six inch", "footlong"],
+    varients: ["six inch", "foot-long"],
     prices: [
       {
-        "six inch": 200,
-        footlong: 400,
+        "six inch": 160,
+        "foot-long": 280,
       },
     ],
     category: "veg",
@@ -86,11 +86,11 @@ const subways = [
   {
     name: "CHICKEN TERIYAKI",
     icon: nonveg,
-    varients: ["six inch", "footlong"],
+    varients: ["six inch", "foot-long"],
     prices: [
       {
-        "six inch": 200,
-        footlong: 400,
+        "six inch": 180,
+        "foot-long": 310,
       },
     ],
     category: "nonveg",
