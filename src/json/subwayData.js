@@ -20,7 +20,8 @@ const subways = [
     ],
     category: "nonveg",
     image: image1,
-    description: "Pepper Barbecue Chicken I Cheese",
+    description:
+      "Western omelet filled with ham, onions, and green bell peppers.",
   },
 
   {
@@ -50,7 +51,8 @@ const subways = [
     ],
     category: "veg",
     image: image3,
-    description: "Pepper Barbecue Chicken I Cheese",
+    description:
+      "The Veggie Delite Signature Wrap has a double portion of the fresh veggies you love. All wrapped in a flavorful spinach wrap with lettuce, tomatoes, spinach, green peppers, cucumbers, and red onions. It’s one bold, crunchy flavor combo.",
   },
 
   {

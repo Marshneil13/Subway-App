@@ -21,3 +21,10 @@ select{
   padding: 25px !important; 
   height: 430px !important;
 }
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

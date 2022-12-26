@@ -1,26 +1,34 @@
 import React from "react";
 import { useState } from "react";
 import "../styles/card.css";
+import { Modal, Button } from "react-bootstrap";
+// import closeButton from "react-bootstrap";
 
 function Card({ subway }) {
   const [quantity, setQuantity] = useState(1);
   const [varient, setVarient] = useState("six inch");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div style={{ margin: "70px 120px" }} className="card-div">
-      <h1>
+      <div onClick={handleShow}>
+        <h1>
+          <img
+            src={subway.icon}
+            alt="icon"
+            style={{ height: "30px", width: "30px" }}
+          />
+          {subway.name}
+        </h1>
         <img
-          src={subway.icon}
-          alt="icon"
-          style={{ height: "30px", width: "30px" }}
+          src={subway.image}
+          alt="subway"
+          className="img-fluid"
+          style={{ height: "200px", width: "200px" }}
         />
-        {subway.name}
-      </h1>
-      <img
-        src={subway.image}
-        alt="subway"
-        className="img-fluid"
-        style={{ height: "200px", width: "200px" }}
-      />
+      </div>
       <div className="flex-container">
         <div className="w-100 m-1">
           <p>Varients: </p>
@@ -64,6 +72,34 @@ function Card({ subway }) {
           <button className="btn">ADD TO CART</button>
         </div>
       </div>
+
+      <Modal show={show}>
+        <Modal.Header>
+          <Modal.Title>{subway.name}</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <div className="modal-body">
+            <div>
+              <img
+                src={subway.image}
+                alt="subway"
+                className="img-fluid"
+                style={{ height: "300px", width: "300px" }}
+              />
+            </div>
+            <div>
+              <p>{subway.description}</p>
+            </div>
+          </div>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <button className="btn" onClick={handleClose}>
+            CLOSE
+          </button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
