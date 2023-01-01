@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "../styles/card.css";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, ModalDialog } from "react-bootstrap";
 // import closeButton from "react-bootstrap";
 
 function Card({ subway }) {
@@ -74,6 +74,7 @@ function Card({ subway }) {
       </div>
 
       <Modal show={show}>
+        {/* <ModalDialog> */}
         <Modal.Header>
           <Modal.Title>{subway.name}</Modal.Title>
         </Modal.Header>
@@ -99,6 +100,7 @@ function Card({ subway }) {
             CLOSE
           </button>
         </Modal.Footer>
+        {/* </ModalDialog> */}
       </Modal>
     </div>
   );
