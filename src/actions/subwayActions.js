@@ -5,9 +5,9 @@ export const getAllSubways = () => (dispatch) => {
   try {
     const response = axios.get("/api/subways/getsubways");
     console.log("RESPONSE", response);
-    dispatch({ type: "GET_SUBWAYS_SUCCESS" });
+    dispatch({ type: "GET_SUBWAYS_SUCCESS", payload: response.data });
   } catch (error) {
-    dispatch({ type: "GET_SUBWAYS_FAILED" });
+    dispatch({ type: "GET_SUBWAYS_FAILED", payload: error });
   }
 };
 //getAllSubways is the action name followed by the dispatch function
