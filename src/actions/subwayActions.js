@@ -1,9 +1,9 @@
 import axios from "axios";
-export const getAllSubways = () => (dispatch) => {
+export const getAllSubways = () => async (dispatch) => {
   dispatch({ type: "GET_SUBWAYS_REQUEST" });
 
   try {
-    const response = axios.get("/api/subways/getsubways");
+    const response = await axios.get("/api/subways/getallsubways");
     console.log("RESPONSE", response);
     dispatch({ type: "GET_SUBWAYS_SUCCESS", payload: response.data });
   } catch (error) {
