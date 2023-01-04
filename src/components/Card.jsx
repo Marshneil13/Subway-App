@@ -12,7 +12,7 @@ function Card({ subway }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <div style={{ margin: "70px 120px" }} className="card-div">
+    <div className="card-div">
       <div onClick={handleShow}>
         <h1>
           <img

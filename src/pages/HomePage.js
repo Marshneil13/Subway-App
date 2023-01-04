@@ -21,7 +21,7 @@ function HomePage() {
   }, []);
   return (
     <div>
-      <div className="row">
+      <div className="row justify-content-center">
         {/* conditional rendering */}
         {loading ? (
           <h1>Loading...</h1>
@@ -30,7 +30,8 @@ function HomePage() {
         ) : (
           subways.map((subway) => {
             return (
-              <div className="col-md-4">
+              <div className="col-md-3 m-5" key={subway._id}>
+                {/* Each child in a list should have a unique "key" prop. */}
                 <Card subway={subway} />
               </div>
             );
