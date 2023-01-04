@@ -5,26 +5,37 @@ import { useDispatch, useSelector } from "react-redux";
 
 //The useSelector hook takes a selector function to select data from the store and another function equalityFn
 //to compare them before returning the results and determine when to render if the data from the previous and current state are different.
+// useSelector hook used to get data from the reducer
 import Card from "../components/Card";
-import subways from "../json/subwayData";
 import { getAllSubways } from "../actions/subwayActions";
 
 function HomePage() {
   //dispatch actions from the component
   const dispatch = useDispatch();
+  const subwayState = useSelector((state) => state.getAllSubwaysReducers);
+
+  const { subways, error, loading } = subwayState;
+
   useEffect(() => {
     dispatch(getAllSubways());
   }, []);
   return (
     <div>
       <div className="row">
-        {subways.map((subway) => {
-          return (
-            <div className="col-md-4">
-              <Card subway={subway} />
-            </div>
-          );
-        })}
+        {/* conditional rendering */}
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : error ? (
+          <h1>Something went wrong</h1>
+        ) : (
+          subways.map((subway) => {
+            return (
+              <div className="col-md-4">
+                <Card subway={subway} />
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );
