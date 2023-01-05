@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import "../styles/card.css";
 import { Modal, Button, ModalDialog } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
 // import closeButton from "react-bootstrap";
-
+import { addToCart } from "../actions/cartActions";
 function Card({ subway }) {
   const [quantity, setQuantity] = useState(1);
   const [varient, setVarient] = useState("six inch");
@@ -11,6 +12,11 @@ function Card({ subway }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const dispatch = useDispatch();
+
+  function addToCartFunction() {
+    dispatch(addToCart(subway, varient, quantity));
+  }
   return (
     <div className="card-div">
       <div onClick={handleShow}>
@@ -69,7 +75,9 @@ function Card({ subway }) {
           </h1>
         </div>
         <div className="m-1 w-100 pb-1">
-          <button className="btn">ADD TO CART</button>
+          <button className="btn" onClick={addToCartFunction}>
+            ADD TO CART
+          </button>
         </div>
       </div>
 
