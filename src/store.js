@@ -17,7 +17,16 @@ const finalReducer = combineReducers({
   cartReducer: cartReducer,
 });
 
-const initialState = {};
+//in local storage data is stored in the form of a string
+const cartItems = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
+const initialState = {
+  cartReducer: {
+    cartItems: cartItems,
+  },
+};
 const composeEnhancers = composeWithDevTools({});
 //The store enhancer. You may optionally specify it to enhance
 //the store with third-party capabilities such as middleware, time travel, persistence, etc.
