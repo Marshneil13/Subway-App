@@ -10,9 +10,11 @@ import thunk from "redux-thunk";
 //Redux Thunk is middleware that allows you to return functions, rather than just actions, within Redux.
 import { composeWithDevTools } from "redux-devtools-extension";
 import { getAllSubwaysReducers } from "./reducers/subwayReducers"; //this is the child reducer for the combineReducers
+import { cartReducer } from "./reducers/cartReducers";
 
 const finalReducer = combineReducers({
   getAllSubwaysReducers: getAllSubwaysReducers,
+  cartReducer: cartReducer,
 });
 
 const initialState = {};
