@@ -23,6 +23,10 @@ code {
 
 .nav-link{
   color: black;
+  font-size: 1.2rem;
+}
+.login-link{
+  transform: translateY(5px);
 }
 .navbar-brand{
   color: black;
@@ -34,4 +38,23 @@ code {
 
 .nav-link:hover{
   color: orangered;
+}
+
+.cart-icon{
+  transform: translateY(2px);
+}
+
+.cart-btn{
+  border: none;
+  padding: 6px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 32px;
+    background-color: orangered;
+    color: white;
+}
+
+.cart-btn:hover{
+  /* color:orangered; */
+  background-color: rgb(203, 57, 3);
 }

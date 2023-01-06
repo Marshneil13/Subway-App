@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { FaShoppingCart } from "react-icons/fa";
 // imported to access the state of the cartReducer from the Navbar
 
 function Navbar() {
@@ -25,13 +26,16 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link login-link" href="#">
                 Login
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Cart {cartState.cartItems.length}
+                <button className="cart-btn">
+                  <FaShoppingCart className="cart-icon" />
+                  {` ${cartState.cartItems.length}`}
+                </button>
               </a>
             </li>
           </ul>
