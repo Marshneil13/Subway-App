@@ -64,3 +64,14 @@ code {
   /* color:orangered; */
   background-color: rgb(203, 57, 3);
 }
+
+.cartHeading{
+  font-size: 35px;
+}
+
+
+.cartDivInner{
+  border: 1px solid black;
+  width: 70vw;
+  margin: auto;
+}
