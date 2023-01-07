@@ -21,6 +21,10 @@ code {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.navbar-brand:hover{
+ color: black;
+}
+
 .nav-link{
   color: black;
   font-size: 1.2rem;
@@ -30,7 +34,9 @@ code {
 }
 .navbar-brand{
   color: black;
-  font-size: 1.5rem !important;
+  font-size: 1.6rem !important;
+  /* border: 1px solid black; */
+  padding-left: 13px;
 }
 .navbar-brand-span{
   color: orangered;

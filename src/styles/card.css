@@ -17,9 +17,11 @@ select{
 }
 
 .card-div{
+    background-color: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 32px 0px;
   padding: 25px !important; 
   height: 430px !important;
+  border-radius: 12px;
 }
 
 .modal-body{
