@@ -14,7 +14,7 @@ function CartPage() {
         <h1 className="cartHeading">My Cart</h1>
         {cartItems.map((item) => {
           return (
-            <div className="flex-container">
+            <div className="flex-container flexOuterDiv">
               <div className="flexDiv m-1 w-100">
                 <h1>
                   {item.name} [{item.varient}]

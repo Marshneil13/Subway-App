@@ -1,10 +1,25 @@
 export const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
-      return {
-        ...state,
-        cartItems: [...state.cartItems, action.payload],
-      };
+      const alreadyExists = state.cartItems.find(
+        //to check if item already exists or not
+        (item) => item._id === action.payload._id
+      );
+      // action.payload refers to the item we are trying to add
+      if (alreadyExists) {
+        // on clicking add to cart for an already existing product in the cart
+        return {
+          ...state,
+          cartItems: state.cartItems.map((item) =>
+            item._id === action.payload._id ? action.payload : item
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, action.payload],
+        };
+      }
     default:
       return state;
   }

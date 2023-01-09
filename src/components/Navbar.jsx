@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <div className="navDiv">
       <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-white rounded">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           SANDY<span className="navbar-brand-span">SUBWAY</span>
         </a>
         <button
