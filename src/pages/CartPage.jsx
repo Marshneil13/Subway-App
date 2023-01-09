@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { cartReducer } from "../reducers/cartReducers";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
+import { addToCart } from "../actions/cartActions";
 
 function CartPage() {
   const cartState = useSelector((state) => state.cartReducer);
   const cartItems = cartState.cartItems;
+  const dispatch = useDispatch();
   //   console.log("CARTiTEMS", cartItems);
   return (
     <div className="cartDiv">
@@ -17,15 +19,40 @@ function CartPage() {
             <div className="flex-container flexOuterDiv">
               <div className="flexDiv m-1 w-100">
                 <h1>
-                  {item.name} [{item.varient}]
+                  <span style={{ color: "orangered" }}>{item.name}</span> [
+                  {item.varient}]
                 </h1>
                 <h1>
                   Price: {item.quantity} * {item.prices[0][item.varient]} ={" "}
                   {item.price}
                 </h1>
                 <h1>
-                  Quantity: <BiPlus className="plusIcon" />{" "}
-                  <b>{item.quantity}</b> <BiMinus className="minusIcon" />
+                  Quantity:{" "}
+                  <BiPlus
+                    className="plusIcon"
+                    onClick={() => {
+                      dispatch(
+                        addToCart(
+                          item,
+                          item.varient,
+                          parseInt(item.quantity) + 1
+                        )
+                      );
+                    }}
+                  />{" "}
+                  <b>{item.quantity}</b>{" "}
+                  <BiMinus
+                    className="minusIcon"
+                    onClick={() => {
+                      dispatch(
+                        addToCart(
+                          item,
+                          item.varient,
+                          parseInt(item.quantity) - 1
+                        )
+                      );
+                    }}
+                  />
                 </h1>
               </div>
               <div className="m-10 w-100">
