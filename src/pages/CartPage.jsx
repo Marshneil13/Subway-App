@@ -4,6 +4,7 @@ import { cartReducer } from "../reducers/cartReducers";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
 import { addToCart } from "../actions/cartActions";
+import { deleteFromCart } from "../actions/cartActions";
 
 function CartPage() {
   const cartState = useSelector((state) => state.cartReducer);
@@ -16,7 +17,7 @@ function CartPage() {
         <h1 className="cartHeading">My Cart</h1>
         {cartItems.map((item) => {
           return (
-            <div className="flex-container flexOuterDiv">
+            <div className="flexOuterDiv">
               <div className="flexDiv m-1 w-100">
                 <h1>
                   <span style={{ color: "orangered" }}>{item.name}</span> [
@@ -55,15 +56,19 @@ function CartPage() {
                   />
                 </h1>
               </div>
-              <div className="m-10 w-100">
+              <div className="imgDiv">
                 <img
+                  className="subwayImg"
                   src={item.image}
                   alt="subway"
-                  style={{ height: "100px", width: "100px" }}
+                  style={{ height: "130px", width: "130px" }}
                 />
-              </div>
-              <div className="m-1 w-100">
-                <FaTrashAlt className="trashIcon" />
+                <FaTrashAlt
+                  className="trashIcon"
+                  onClick={() => {
+                    dispatch(deleteFromCart(item));
+                  }}
+                />
               </div>
             </div>
           );

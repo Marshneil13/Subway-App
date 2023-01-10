@@ -20,3 +20,9 @@ export const addToCart =
     //setting data in the local storage
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
+
+export const deleteFromCart = (subway) => (dispatch, getState) => {
+  dispatch({ type: "DELETE_FROM_CART", payload: subway });
+  const cartItems = getState().cartReducer.cartItems;
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+};
