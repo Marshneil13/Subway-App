@@ -33,11 +33,7 @@ function CartPage() {
                     className="plusIcon"
                     onClick={() => {
                       dispatch(
-                        addToCart(
-                          item,
-                          item.varient,
-                          parseInt(item.quantity) + 1
-                        )
+                        addToCart(item, item.varient, item.quantity + 1)
                       );
                     }}
                   />{" "}
@@ -46,11 +42,7 @@ function CartPage() {
                     className="minusIcon"
                     onClick={() => {
                       dispatch(
-                        addToCart(
-                          item,
-                          item.varient,
-                          parseInt(item.quantity) - 1
-                        )
+                        addToCart(item, item.varient, item.quantity - 1)
                       );
                     }}
                   />

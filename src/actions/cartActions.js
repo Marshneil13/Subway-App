@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export const addToCart =
   (subway, varient, quantity) => (dispatch, getState) => {
     var cartItem = {
@@ -5,7 +7,7 @@ export const addToCart =
       _id: subway._id,
       image: subway.image,
       varient: varient,
-      quantity: quantity,
+      quantity: Number(quantity),
       prices: subway.prices,
       price: subway.prices[0][varient] * quantity,
       // price is the cost of the selected item
@@ -13,7 +15,13 @@ export const addToCart =
       // so that we can easily change the quantity of the selected item
     };
 
-    dispatch({ type: "ADD_TO_CART", payload: cartItem });
+    if (cartItem.quantity > 10) {
+      alert("Maximum quantity is 10");
+    } else if (cartItem.quantity < 1) {
+      dispatch({ type: "DELETE_FROM_CART", payload: subway });
+    } else {
+      dispatch({ type: "ADD_TO_CART", payload: cartItem });
+    }
 
     //getState used to get the variables and reducers from the store
     const cartItems = getState().cartReducer.cartItems;
