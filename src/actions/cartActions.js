@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 export const addToCart =
   (subway, varient, quantity) => (dispatch, getState) => {
     var cartItem = {
