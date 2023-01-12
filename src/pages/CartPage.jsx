@@ -5,10 +5,12 @@ import { BiPlus, BiMinus } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
 import { addToCart } from "../actions/cartActions";
 import { deleteFromCart } from "../actions/cartActions";
+import { toast } from "react-toastify";
 
 function CartPage() {
   const cartState = useSelector((state) => state.cartReducer);
   const cartItems = cartState.cartItems;
+  var subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
   const dispatch = useDispatch();
   //   console.log("CARTiTEMS", cartItems);
   return (
@@ -65,6 +67,23 @@ function CartPage() {
             </div>
           );
         })}
+      </div>
+      <div className="subTotalDivOuter flex-container justify-content-end">
+        <div className="subTotalDiv">
+          <h1 className="subTotalHead">SubTotal : Rs {subtotal}/-</h1>
+        </div>
+      </div>
+      <div className="flex-container justify-content-center">
+        <button
+          className="btn-lg"
+          style={{
+            backgroundColor: "orangered",
+            border: "none",
+            color: "white",
+          }}
+        >
+          Proceed to Pay
+        </button>
       </div>
     </div>
   );

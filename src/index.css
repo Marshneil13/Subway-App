@@ -120,3 +120,22 @@ code {
   /* border: 1px solid red; */
   display: flex;
 }
+
+.subTotalHead{
+  font-size: 35px;
+}
+
+.subTotalDiv{
+  /* border: 1px solid black;
+  border-top: none; */
+  padding: 20px;
+}
+
+.subTotalDivOuter{
+  width: 70vw;
+  margin: auto;
+  
+}
+ input{
+  margin-top: 10px !important;
+ }
