@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../actions/userActions";
 function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
+  const dispatch = useDispatch();
   function register() {
     if (password !== confirm) {
       alert("Passwords do not match");
@@ -17,6 +19,7 @@ function RegisterPage() {
         password,
       };
       console.log("USER registered", user);
+      dispatch(registerUser(user));
     }
   }
 
