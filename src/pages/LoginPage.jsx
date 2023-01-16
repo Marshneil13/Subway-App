@@ -1,13 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../actions/userActions";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  function login() {}
+  function login() {
+    const user = {
+      email,
+      password,
+    };
+    dispatch(loginUser(user));
+  }
   return (
     <div>
       <div className="row justify-content-center mt-5">

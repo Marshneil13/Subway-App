@@ -12,11 +12,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { getAllSubwaysReducers } from "./reducers/subwayReducers"; //this is the child reducer for the combineReducers
 import { cartReducer } from "./reducers/cartReducers";
 import { registerUserReducer } from "./reducers/userReducers";
+import { loginUserReducer } from "./reducers/userReducers";
 
 const finalReducer = combineReducers({
   getAllSubwaysReducers: getAllSubwaysReducers,
   cartReducer: cartReducer,
   registerUserReducer: registerUserReducer,
+  loginUserReducer: loginUserReducer,
 });
 
 //in local storage data is stored in the form of a string
