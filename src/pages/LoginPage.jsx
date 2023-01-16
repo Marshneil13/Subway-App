@@ -1,9 +1,47 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+  function login() {}
   return (
     <div>
-      <h1>Login Page</h1>
+      <div className="row justify-content-center mt-5">
+        <div className="col-md-5 mt-5">
+          <h1 className="mb-3" style={{ fontSize: "35px" }}>
+            Login
+          </h1>
+          <form>
+            <input
+              type="email"
+              required
+              placeholder="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <input
+              type="password"
+              required
+              placeholder="password"
+              className="form-control"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <button className="btn mt-3" onClick={login}>
+              LOGIN
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
