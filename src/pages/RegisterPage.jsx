@@ -8,7 +8,7 @@ function RegisterPage() {
   const [confirm, setConfirm] = useState("");
 
   function register() {
-    if (password != confirm) {
+    if (password !== confirm) {
       alert("Passwords do not match");
     } else {
       const user = {
