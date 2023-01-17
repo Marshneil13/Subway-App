@@ -20,6 +20,7 @@ export const registerUserReducer = (state = {}, action) => {
   }
 };
 
+//currentUser is an object hence we need not create it, if it is an array then we need to
 export const loginUserReducer = (state = {}, action) => {
   switch (action.type) {
     case "USER_LOGIN_REQUEST":
@@ -30,6 +31,7 @@ export const loginUserReducer = (state = {}, action) => {
       return {
         loading: false,
         success: true,
+        currentUser: action.payload,
       };
     case "USER_LOGIN_FAILED":
       return {
