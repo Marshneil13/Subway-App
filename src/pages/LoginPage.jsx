@@ -28,7 +28,7 @@ function LoginPage() {
           <h1 className="mb-3" style={{ fontSize: "35px" }}>
             Login
           </h1>
-          <form>
+          <div>
             <input
               type="email"
               required
@@ -52,7 +52,7 @@ function LoginPage() {
             <button className="btn mt-3" onClick={login}>
               LOGIN
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

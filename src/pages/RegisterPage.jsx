@@ -19,7 +19,9 @@ function RegisterPage() {
         password,
       };
       console.log("USER registered", user);
-      dispatch(registerUser(user));
+
+      // dispatch(registerUser(user));
+      registerUser(dispatch, user);
     }
   }
 
@@ -30,7 +32,7 @@ function RegisterPage() {
           <h1 className="mb-3" style={{ fontSize: "35px" }}>
             Register
           </h1>
-          <form>
+          <div>
             <input
               type="text"
               required
@@ -74,7 +76,7 @@ function RegisterPage() {
             <button className="btn mt-3" onClick={register}>
               REGISTER
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
