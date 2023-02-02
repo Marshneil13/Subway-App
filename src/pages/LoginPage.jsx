@@ -25,7 +25,7 @@ function LoginPage() {
   return (
     <div>
       <div className="row justify-content-center mt-5">
-        <div className="col-md-5 mt-5">
+        <div className="col-md-5 mt-5 shadow p-3 mb-5 bg-white rounded">
           <h1 className="mb-3" style={{ fontSize: "35px" }}>
             Login
           </h1>
@@ -53,6 +53,9 @@ function LoginPage() {
             <button className="btn mt-3" onClick={login}>
               LOGIN
             </button>
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <a href="/register">Don't have an account?</a>
           </div>
         </div>
       </div>

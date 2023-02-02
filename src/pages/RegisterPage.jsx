@@ -28,7 +28,7 @@ function RegisterPage() {
   return (
     <div>
       <div className="row justify-content-center mt-5">
-        <div className="col-md-5 mt-5">
+        <div className="col-md-5 mt-5 shadow p-3 mb-5 bg-white rounded">
           <h1 className="mb-3" style={{ fontSize: "35px" }}>
             Register
           </h1>
@@ -76,6 +76,9 @@ function RegisterPage() {
             <button className="btn mt-3" onClick={register}>
               REGISTER
             </button>
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <a href="/login">Already have an account?</a>
           </div>
         </div>
       </div>
