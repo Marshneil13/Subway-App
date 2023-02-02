@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 //to compare them before returning the results and determine when to render if the data from the previous and current state are different.
 // useSelector hook used to get data from the reducer
 import Card from "../components/Card";
+import Loader from "../components/Loader";
 import { getAllSubways } from "../actions/subwayActions";
 
 function HomePage() {
@@ -24,7 +25,7 @@ function HomePage() {
       <div className="row justify-content-center">
         {/* conditional rendering */}
         {loading ? (
-          <h1>Loading...</h1>
+          <Loader />
         ) : error ? (
           <h1>Something went wrong</h1>
         ) : (

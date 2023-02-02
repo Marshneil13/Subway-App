@@ -47,7 +47,7 @@ code {
 }
 
 .cart-icon{
-  transform: translateY(2px);
+  transform: translateY(-2px);
 }
 
 .cart-btn{
