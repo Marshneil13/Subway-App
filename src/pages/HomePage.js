@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 // useSelector hook used to get data from the reducer
 import Card from "../components/Card";
 import Loader from "../components/Loader";
+import Error from "../components/Error";
 import { getAllSubways } from "../actions/subwayActions";
 
 function HomePage() {
@@ -27,7 +28,7 @@ function HomePage() {
         {loading ? (
           <Loader />
         ) : error ? (
-          <h1>Something went wrong</h1>
+          <Error error="Oops! Something went wrong" />
         ) : (
           subways.map((subway) => {
             return (

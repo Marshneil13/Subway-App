@@ -2,12 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
+import { logoutUser } from "../actions/userActions";
 // imported to access the state of the cartReducer from the Navbar
 
 function Navbar() {
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userState;
+  const dispatch = useDispatch();
   return (
     <div className="navDiv">
       <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-white rounded">
@@ -45,8 +47,14 @@ function Navbar() {
                   <a className="dropdown-item" href="#">
                     My Orders
                   </a>
-                  <a className="dropdown-item" href="#">
-                    Logout
+                  <a
+                    className="dropdown-item"
+                    href="#"
+                    onClick={() => {
+                      dispatch(logoutUser());
+                    }}
+                  >
+                    <li>Logout</li>
                   </a>
                 </div>
               </div>
