@@ -12,6 +12,7 @@ function LoginPage() {
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
       window.location.href = "/";
+      // the above line redirects to the homepage
     }
   });
   function login() {

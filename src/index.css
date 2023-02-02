@@ -139,5 +139,12 @@ code {
   margin-top: 10px !important;
  }
 
+ .dropdown-btn{
+  border: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  margin-top: 12px;
+  margin-right: 10px;
+ }
 
 
