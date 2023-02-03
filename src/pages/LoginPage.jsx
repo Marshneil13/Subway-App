@@ -2,12 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
+import Loader from "../components/Loader";
+import Error from "../components/Error";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const loginState = useSelector((state) => state.loginUserReducer);
   const dispatch = useDispatch();
+  const { loading, error } = loginState;
 
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
@@ -29,6 +32,8 @@ function LoginPage() {
           <h1 className="mb-3" style={{ fontSize: "35px" }}>
             Login
           </h1>
+          {loading && <Loader />}
+          {error && <Error error="Invalid Credentials" />}
           <div>
             <input
               type="email"
