@@ -1,10 +1,15 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { useDispatch } from "react-redux";
+import { placeOrder } from "../actions/orderActions";
+
 const myPublishableKey = process.env.STRIPE_KEY;
 
 function Payment({ subtotal }) {
+  const dispatch = useDispatch();
   function tokenHandler(token) {
     console.log(token);
+    dispatch(placeOrder(token, subtotal));
   }
   return (
     <div>
