@@ -6,7 +6,6 @@ import { FaTrashAlt } from "react-icons/fa";
 import { addToCart } from "../actions/cartActions";
 import { deleteFromCart } from "../actions/cartActions";
 import { toast } from "react-toastify";
-import Payment from "../components/Payment";
 
 function CartPage() {
   const cartState = useSelector((state) => state.cartReducer);
@@ -75,7 +74,16 @@ function CartPage() {
         </div>
       </div>
       <div className="flex-container justify-content-center">
-        <Payment subtotal={subtotal} />
+        <button
+          className="btn-lg"
+          style={{
+            backgroundColor: "orangered",
+            border: "none",
+            color: "white",
+          }}
+        >
+          Proceed to Pay
+        </button>
       </div>
     </div>
   );
