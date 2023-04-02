@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import Payment from "./components/Payment";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<HomePage />} />
           <Route path="/cart" exact element={<CartPage />} />
+          <Route path="/checkout" exact element={<Payment />} />
           <Route path="/register" exact element={<RegisterPage />} />
           <Route path="/login" exact element={<LoginPage />} />
         </Routes>
