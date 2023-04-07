@@ -13,7 +13,10 @@ import { getAllSubwaysReducers } from "./reducers/subwayReducers"; //this is the
 import { cartReducer } from "./reducers/cartReducers";
 import { registerUserReducer } from "./reducers/userReducers";
 import { loginUserReducer } from "./reducers/userReducers";
-import { placeOrderReducer } from "./reducers/orderReducer";
+import {
+  getUserOrdersReducer,
+  placeOrderReducer,
+} from "./reducers/orderReducer";
 
 const finalReducer = combineReducers({
   getAllSubwaysReducers: getAllSubwaysReducers,
@@ -21,6 +24,7 @@ const finalReducer = combineReducers({
   registerUserReducer: registerUserReducer,
   loginUserReducer: loginUserReducer,
   placeOrderReducer: placeOrderReducer,
+  getUserOrdersReducer: getUserOrdersReducer,
 });
 
 //in local storage data is stored in the form of a string

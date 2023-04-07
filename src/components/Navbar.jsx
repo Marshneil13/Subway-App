@@ -44,12 +44,12 @@ function Navbar() {
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="#">
-                    My Orders
+                  <a className="dropdown-item" href="/orders">
+                    Orders
                   </a>
                   <a
                     className="dropdown-item"
-                    href="#"
+                    href="/login"
                     onClick={() => {
                       dispatch(logoutUser());
                     }}
