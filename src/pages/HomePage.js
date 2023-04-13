@@ -10,6 +10,7 @@ import Card from "../components/Card";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import { getAllSubways } from "../actions/subwayActions";
+import Filter from "../components/Filter";
 
 function HomePage() {
   //dispatch actions from the component
@@ -23,6 +24,7 @@ function HomePage() {
   }, []);
   return (
     <div>
+      <Filter />
       <div className="row justify-content-center">
         {/* conditional rendering */}
         {loading ? (
