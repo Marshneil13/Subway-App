@@ -147,4 +147,63 @@ code {
   margin-right: 10px;
  }
 
+ .adminFunctions{
+  padding: 10px;
+  background-color: rgb(204, 201, 201);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+ }
 
+ .adminFunctions li{
+  list-style-type: none !important;
+  display: inline !important;
+ }
+
+ .adminFunctions li a{
+  color: rgb(2, 2, 82);
+ }
+
+ td, th, tr{
+  text-align: left;
+ }
+
+ .admin{
+  margin: auto;
+  /* border: 1px solid red; */
+ }
+
+ .fa-icon{
+  padding: 4px;
+  color: red;
+ }
+
+ .green{
+  color: rgb(4, 157, 4);
+ }
+ .red{
+  color: red;
+ }
+
+ .adminHead{
+    color: orangered;
+ }
+ .adminFormDiv{
+  width: 83vw;
+  margin: auto;
+ }
+
+ .paymentForm{
+  width: 468px;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ }
+
+ .paymentDiv{
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+  padding-top: 8px;
+ }

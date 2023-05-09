@@ -69,14 +69,20 @@ function CartPage() {
           );
         })}
       </div>
-      <div className="subTotalDivOuter flex-container justify-content-end">
-        <div className="subTotalDiv">
-          <h1 className="subTotalHead">SubTotal : Rs {subtotal}/-</h1>
+      {subtotal === 0 ? (
+        <h1 style={{ marginTop: "30px" }}>{`Your cart is empty :(`}</h1>
+      ) : (
+        <div className="subTotalDivOuter flex-container justify-content-end">
+          <div className="subTotalDiv">
+            <h1 className="subTotalHead">SubTotal : Rs {subtotal}/-</h1>
+          </div>
         </div>
-      </div>
-      <div className="flex-container justify-content-center">
-        <Payment subtotal={subtotal} />
-      </div>
+      )}
+      {subtotal > 0 && (
+        <div className="flex-container justify-content-center">
+          <Payment subtotal={subtotal} />
+        </div>
+      )}
     </div>
   );
 }

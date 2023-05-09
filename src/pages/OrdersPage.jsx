@@ -5,7 +5,7 @@ import Loader from "../components/Loader";
 import Error from "../components/Error";
 const OrdersPage = () => {
   const dispatch = useDispatch();
-  const orderState = useSelector((state) => state.getUserOrdersReducers);
+  const orderState = useSelector((state) => state.getUserOrdersReducer);
   const { orders, error, loading } = orderState;
 
   useEffect(() => {
@@ -22,11 +22,11 @@ const OrdersPage = () => {
             return (
               <div
                 className="col-md-8"
-                style={{ backgroundColor: "lightgrey", color: "orangered" }}
+                style={{ backgroundColor: "#e3e3e3", color: "#d63e01" }}
               >
                 <div className="flex-container">
                   <div className="text-left w-100 m-1">
-                    <h2 style={{ fontSize: "25px", color: "black" }}>Items</h2>
+                    <h3 style={{ fontSize: "20px", color: "black" }}>Items</h3>
                     <hr />
                     {order.orderItems.map((item) => {
                       return (
@@ -40,9 +40,9 @@ const OrdersPage = () => {
                     })}
                   </div>
                   <div className="text-left w-100 m-1">
-                    <h2 style={{ fontSize: "25px", color: "black" }}>
+                    <h3 style={{ fontSize: "20px", color: "black" }}>
                       Address
-                    </h2>
+                    </h3>
                     <hr />
                     <p>Street : {order.shippingAddress.street}</p>
                     <p>City : {order.shippingAddress.city}</p>
@@ -50,13 +50,13 @@ const OrdersPage = () => {
                     <p>Pincode : {order.shippingAddress.pincode}</p>
                   </div>
                   <div className="text-left w-100 m-1">
-                    <h2 style={{ fontSize: "25px", color: "black" }}>
+                    <h3 style={{ fontSize: "20px", color: "black" }}>
                       Order Info
-                    </h2>
+                    </h3>
                     <hr />
                     <p>Order Amount : {order.orderAmount}</p>
                     <p>Date : {order.createdAt.substring(0, 10)}</p>
-                    <p>Transaction Id : {order.transactionId}</p>
+                    <p>Payment Status : {order.paymentStatus}</p>
                     <p>Order Id : {order._id}</p>
                   </div>
                 </div>

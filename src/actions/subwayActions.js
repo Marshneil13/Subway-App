@@ -33,3 +33,14 @@ export const filterSubways = (searchKey, category) => async (dispatch) => {
     dispatch({ type: "GET_SUBWAYS_FAILED", payload: error });
   }
 };
+
+export const addSubway = (subway) => async (dispatch) => {
+  dispatch({ type: "ADD_SUBWAY_REQUEST" });
+  try {
+    const response = await axios.post("/api/subways/addsubways", { subway });
+    console.log("Added Subway Successfully", response);
+    dispatch({ type: "ADD_SUBWAY_SUCCESS" });
+  } catch (error) {
+    dispatch({ type: "ADD_SUBWAY_FAILED", payload: error });
+  }
+};

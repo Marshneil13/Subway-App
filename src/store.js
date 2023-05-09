@@ -35,7 +35,7 @@ const cartItems = localStorage.getItem("cartItems")
 //store the logged in user in local storage
 const currentUser = localStorage.getItem("currentUser")
   ? JSON.parse(localStorage.getItem("currentUser"))
-  : null;
+  : {};
 
 const initialState = {
   cartReducer: {

@@ -32,3 +32,9 @@ export const deleteFromCart = (subway) => (dispatch, getState) => {
   const cartItems = getState().cartReducer.cartItems;
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
+
+export const emptyCart = () => (dispatch, getState) => {
+  dispatch({ type: "EMPTY_CART" });
+  const cartItems = getState().cartReducer.cartItems;
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+};

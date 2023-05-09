@@ -29,6 +29,12 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         ),
       };
 
+    case "EMPTY_CART":
+      return {
+        ...state,
+        cartItems: [],
+      };
+
     default:
       return state;
   }
