@@ -22,7 +22,7 @@ export const getAllSubwaysReducers = (state = { subways: [] }, action) => {
 
 // action.payload refers to the value returned in response to that action
 
-export const AddSubwayReducers = (state = { subways: [] }, action) => {
+export const AddSubwayReducers = (state = {}, action) => {
   switch (action.type) {
     case "ADD_SUBWAY_REQUEST":
       return {
@@ -32,7 +32,7 @@ export const AddSubwayReducers = (state = { subways: [] }, action) => {
     case "ADD_SUBWAY_SUCCESS":
       return {
         loading: false,
-        subways: action.payload,
+        success: true,
       };
     case "ADD_SUBWAY_FAILED":
       return {

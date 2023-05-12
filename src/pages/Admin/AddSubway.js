@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addSubway } from "../../actions/subwayActions";
+import Error from "../../components/Error";
+import Loader from "../../components/Loader";
+import Success from "../../components/Success";
 
 function AddSubway() {
   const [name, setName] = useState("");
-  const [sixInch, setSixInch] = useState();
-  const [footLong, setFootLong] = useState();
+  const [sixInch, setSixInch] = useState("");
+  const [footLong, setFootLong] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
+  const dispatch = useDispatch();
+  const addSubwayState = useSelector((state) => state.AddSubwayReducers);
+  const { success, error, loading } = addSubwayState;
   function handleSubmit(e) {
+    let IconUrl =
+      category === "veg"
+        ? "https://i.ibb.co/nPRDxJH/icons8-vegetarian-food-symbol-48.png"
+        : "https://i.ibb.co/wY9dHkY/icons8-non-vegetarian-food-symbol-48.png";
     e.preventDefault();
     const subway = {
       name,
@@ -20,7 +32,15 @@ function AddSubway() {
         sixInch: sixInch,
         footLong: footLong,
       },
+      icon: IconUrl,
     };
+    console.log("Added Subway", subway);
+    try {
+      dispatch(addSubway);
+      console.log("DISPATCH SUCCESSFUL");
+    } catch (error) {
+      console.log("DISPATCH ERROR", error);
+    }
   }
   return (
     <div>
@@ -48,8 +68,12 @@ function AddSubway() {
         <h2 style={{ fontSize: "30px" }} className="adminHead text-center">
           Add Subway
         </h2>
+        {loading && <Loader />}
+        {success && <Success success={"New subway added successfully"} />}
+        {error && <Error error={"Something went wrong"} />}
         <form onSubmit={handleSubmit}>
           <input
+            required
             className="form-control"
             type="text"
             placeholder="name"
@@ -59,8 +83,9 @@ function AddSubway() {
             }}
           />
           <input
+            required
             className="form-control"
-            type="text"
+            type="number"
             placeholder="six inch varient price"
             value={sixInch}
             onChange={(e) => {
@@ -68,8 +93,9 @@ function AddSubway() {
             }}
           />
           <input
+            required
             className="form-control"
-            type="text"
+            type="number"
             placeholder="foot-long varient price"
             value={footLong}
             onChange={(e) => {
@@ -77,6 +103,7 @@ function AddSubway() {
             }}
           />
           <input
+            required
             className="form-control"
             type="text"
             placeholder="category"
@@ -86,6 +113,7 @@ function AddSubway() {
             }}
           />
           <input
+            required
             className="form-control"
             type="text"
             placeholder="description"
@@ -95,6 +123,7 @@ function AddSubway() {
             }}
           />
           <input
+            required
             className="form-control"
             type="text"
             placeholder="image url"
@@ -104,7 +133,7 @@ function AddSubway() {
             }}
             // review image field
           />
-          <button type="submit" className="btn">
+          <button type="submit" className="btn" style={{ marginTop: "20px" }}>
             Add Subway
           </button>
         </form>

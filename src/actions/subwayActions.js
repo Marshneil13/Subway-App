@@ -42,5 +42,6 @@ export const addSubway = (subway) => async (dispatch) => {
     dispatch({ type: "ADD_SUBWAY_SUCCESS" });
   } catch (error) {
     dispatch({ type: "ADD_SUBWAY_FAILED", payload: error });
+    console.log("Failed to add subway", error);
   }
 };

@@ -13,7 +13,7 @@ const OrdersPage = () => {
   }, []);
   return (
     <div>
-      <h2 style={{ fontSize: "35px" }}>My Orders</h2>
+      <h2 style={{ fontSize: "35px", marginBottom: "30px" }}>My Orders</h2>
       <div className="row justify-content-center">
         {loading && <Loader />}
         {error && <Error />}
@@ -22,7 +22,7 @@ const OrdersPage = () => {
             return (
               <div
                 className="col-md-8"
-                style={{ backgroundColor: "#e3e3e3", color: "#d63e01" }}
+                style={{ backgroundColor: "#eeedec", color: "orangered" }}
               >
                 <div className="flex-container">
                   <div className="text-left w-100 m-1">
