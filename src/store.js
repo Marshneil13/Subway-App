@@ -14,6 +14,7 @@ import {
   addSubwayReducers,
   getSubwayByIdReducers,
   editSubwayReducers,
+  deleteSubwayReducers,
 } from "./reducers/subwayReducers"; //this is the child reducer for the combineReducers
 import { cartReducer } from "./reducers/cartReducers";
 import { registerUserReducer } from "./reducers/userReducers";
@@ -33,6 +34,7 @@ const finalReducer = combineReducers({
   addSubwayReducers: addSubwayReducers,
   getSubwayByIdReducers: getSubwayByIdReducers,
   editSubwayReducers: editSubwayReducers,
+  deleteSubwayReducers: deleteSubwayReducers,
 });
 
 //in local storage data is stored in the form of a string

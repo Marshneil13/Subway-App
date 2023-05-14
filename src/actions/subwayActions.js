@@ -74,3 +74,18 @@ export const editSubway = (editedSubway) => async (dispatch) => {
     console.log("Failed to edit subway", error);
   }
 };
+
+export const deleteSubway = (subwayId) => async (dispatch) => {
+  dispatch({ type: "DELETE_SUBWAY_REQUEST" });
+  try {
+    const response = await axios.post("/api/subways/deletesubway", {
+      subwayId,
+    });
+    console.log("Subway deleted successfully", response);
+    dispatch({ type: "DELETE_SUBWAY_SUCCESS" });
+    window.location.reload();
+  } catch (error) {
+    dispatch({ type: "DELETE_SUBWAY_FAILED", payload: error });
+    console.log("Failed to delete subway", error);
+  }
+};

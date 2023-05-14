@@ -87,3 +87,25 @@ export const editSubwayReducers = (state = {}, action) => {
       return state;
   }
 };
+
+export const deleteSubwayReducers = (state = {}, action) => {
+  switch (action.type) {
+    case "DELETE_SUBWAY_REQUEST":
+      return {
+        deleteLoading: true,
+        ...state,
+      };
+    case "ADD_SUBWAY_SUCCESS":
+      return {
+        deleteLoading: false,
+        deleteSuccess: true,
+      };
+    case "ADD_SUBWAY_FAILED":
+      return {
+        deleteLoading: false,
+        deleteError: action.payload,
+      };
+    default:
+      return state;
+  }
+};

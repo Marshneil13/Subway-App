@@ -5,19 +5,26 @@ import Error from "../../components/Error";
 import Success from "../../components/Success";
 import Loader from "../../components/Loader";
 import { Link } from "react-router-dom";
-import { getAllSubways } from "../../actions/subwayActions";
+import { deleteSubway, getAllSubways } from "../../actions/subwayActions";
 import { FaTrashAlt } from "react-icons/fa";
 import { GrEdit } from "react-icons/gr";
 
 function SubwayList() {
   const dispatch = useDispatch();
   const subwayState = useSelector((state) => state.getAllSubwaysReducers);
+  const deleteSubwayState = useSelector((state) => state.deleteSubwayReducers);
 
   const { subways, error, loading } = subwayState;
+  const { deleteSuccess, deleteError, deleteLoading } = deleteSubwayState;
 
   useEffect(() => {
     dispatch(getAllSubways());
   }, [dispatch]);
+
+  function handleDelete(subwayId) {
+    console.log("Delete", subwayId);
+    dispatch(deleteSubway(subwayId));
+  }
   return (
     <div className="admin col-md-10">
       <div className="row justify-content-center">
@@ -69,7 +76,11 @@ function SubwayList() {
                   </td>
                   <td>
                     <i className="fa-icon">
-                      <FaTrashAlt />
+                      <FaTrashAlt
+                        onClick={() => {
+                          handleDelete(subway._id);
+                        }}
+                      />
                     </i>
                     <Link to={`/admin/editsubway/${subway._id}`}>
                       <i className="fa-icon">
