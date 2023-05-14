@@ -37,11 +37,40 @@ export const filterSubways = (searchKey, category) => async (dispatch) => {
 export const addSubway = (subway) => async (dispatch) => {
   dispatch({ type: "ADD_SUBWAY_REQUEST" });
   try {
-    const response = await axios.post("/api/subways/addsubways", { subway });
+    const response = await axios.post("/api/subways/addsubway", { subway });
     console.log("Added Subway Successfully", response);
     dispatch({ type: "ADD_SUBWAY_SUCCESS" });
   } catch (error) {
     dispatch({ type: "ADD_SUBWAY_FAILED", payload: error });
     console.log("Failed to add subway", error);
+  }
+};
+
+export const getSubwayById = (subwayId) => async (dispatch) => {
+  dispatch({ type: "GET_SUBWAY_BY_ID_REQUEST" });
+
+  try {
+    const response = await axios.post("/api/subways/getsubwaybyid", {
+      subwayId,
+    });
+    console.log("RESPONSE", response);
+    dispatch({ type: "GET_SUBWAY_BY_ID_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "GET_SUBWAY_BY_ID_FAILED", payload: error });
+  }
+};
+
+export const editSubway = (editedSubway) => async (dispatch) => {
+  dispatch({ type: "EDIT_SUBWAY_REQUEST" });
+  try {
+    const response = await axios.post("/api/subways/editsubway", {
+      editedSubway,
+    });
+    console.log("Updated Subway Successfully", response);
+    dispatch({ type: "EDIT_SUBWAY_SUCCESS" });
+    // window.location.href = "/admin/subwaylist";
+  } catch (error) {
+    dispatch({ type: "EDIT_SUBWAY_FAILED", payload: error });
+    console.log("Failed to edit subway", error);
   }
 };

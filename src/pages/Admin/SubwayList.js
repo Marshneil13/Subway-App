@@ -17,7 +17,7 @@ function SubwayList() {
 
   useEffect(() => {
     dispatch(getAllSubways());
-  }, []);
+  }, [dispatch]);
   return (
     <div className="admin col-md-10">
       <div className="row justify-content-center">
@@ -71,9 +71,11 @@ function SubwayList() {
                     <i className="fa-icon">
                       <FaTrashAlt />
                     </i>
-                    <i className="fa-icon">
-                      <GrEdit />
-                    </i>
+                    <Link to={`/admin/editsubway/${subway._id}`}>
+                      <i className="fa-icon">
+                        <GrEdit />
+                      </i>
+                    </Link>
                   </td>
                 </tr>
               );

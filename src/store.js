@@ -11,7 +11,9 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
   getAllSubwaysReducers,
-  AddSubwayReducers,
+  addSubwayReducers,
+  getSubwayByIdReducers,
+  editSubwayReducers,
 } from "./reducers/subwayReducers"; //this is the child reducer for the combineReducers
 import { cartReducer } from "./reducers/cartReducers";
 import { registerUserReducer } from "./reducers/userReducers";
@@ -28,7 +30,9 @@ const finalReducer = combineReducers({
   loginUserReducer: loginUserReducer,
   placeOrderReducer: placeOrderReducer,
   getUserOrdersReducer: getUserOrdersReducer,
-  AddSubwayReducers: AddSubwayReducers,
+  addSubwayReducers: addSubwayReducers,
+  getSubwayByIdReducers: getSubwayByIdReducers,
+  editSubwayReducers: editSubwayReducers,
 });
 
 //in local storage data is stored in the form of a string

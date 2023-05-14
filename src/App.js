@@ -18,6 +18,7 @@ import OrdersList from "./pages/Admin/OrdersList";
 import AddSubway from "./pages/Admin/AddSubway";
 import Success from "./components/Success";
 import SuccessPage from "./pages/SuccessPage";
+import EditSubway from "./pages/Admin/EditSubway";
 
 function App() {
   const userState = useSelector((state) => state.loginUserReducer);
@@ -37,12 +38,17 @@ function App() {
           <Route path="/ordersuccess" exact element={<SuccessPage />} />
           <Route
             path="/admin"
-            element={currentUser.isAdmin ? <AdminPage /> : <Navigate to="/" />}
+            element={currentUser.isAdmin ? <UsersList /> : <Navigate to="/" />}
           />
           <Route path="/admin/userslist" exact element={<UsersList />} />
           <Route path="/admin/subwaylist" exact element={<SubwayList />} />
           <Route path="/admin/orderslist" exact element={<OrdersList />} />
           <Route path="/admin/addsubway" exact element={<AddSubway />} />
+          <Route
+            path="/admin/editsubway/:subwayid"
+            exact
+            element={<EditSubway />}
+          />
           {/* we are not providing exact prop to the admin screen as there will be nested routes inside it */}
         </Routes>
       </BrowserRouter>

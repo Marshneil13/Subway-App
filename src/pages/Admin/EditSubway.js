@@ -1,29 +1,55 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addSubway } from "../../actions/subwayActions";
+import { editSubway, getSubwayById } from "../../actions/subwayActions";
 import Error from "../../components/Error";
 import Loader from "../../components/Loader";
 import Success from "../../components/Success";
+import { Link } from "react-router-dom";
 
-function AddSubway() {
+export default function EditSubway() {
+  var url = window.location.href;
+  var subwayId = url.split("/")[5];
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
-  const [sixInch, setSixInch] = useState("");
-  const [footLong, setFootLong] = useState("");
+  const [sixInch, setSixInch] = useState(0);
+  const [footLong, setFootLong] = useState(0);
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
-  const dispatch = useDispatch();
-  const addSubwayState = useSelector((state) => state.addSubwayReducers);
-  const { success, error, loading } = addSubwayState;
+  const getSubwayByIdState = useSelector(
+    (state) => state.getSubwayByIdReducers
+  );
+  const editSubwayState = useSelector((state) => state.editSubwayReducers);
+
+  const { subway, error, loading } = getSubwayByIdState;
+  const { editLoading, editSuccess, editError } = editSubwayState;
+
+  useEffect(() => {
+    if (subway) {
+      if (subway._id === subwayId) {
+        setName(subway.name);
+        setDescription(subway.description);
+        setCategory(subway.category);
+        setSixInch(subway.prices[0]["six inch"]);
+        setFootLong(subway.prices[0]["foot-long"]);
+        setImage(subway.image);
+      } else {
+        dispatch(getSubwayById(subwayId));
+      }
+    } else {
+      dispatch(getSubwayById(subwayId));
+    }
+  }, [subway, dispatch, subwayId]);
+
   function handleSubmit(e) {
     let IconUrl =
       category === "veg"
         ? "https://i.ibb.co/nPRDxJH/icons8-vegetarian-food-symbol-48.png"
         : "https://i.ibb.co/wY9dHkY/icons8-non-vegetarian-food-symbol-48.png";
     e.preventDefault();
-    const subway = {
+    const editedSubway = {
+      _id: subwayId,
       name,
       image,
       description,
@@ -34,14 +60,10 @@ function AddSubway() {
       },
       icon: IconUrl,
     };
-    console.log("Added Subway", subway);
-    try {
-      dispatch(addSubway(subway));
-      console.log("DISPATCH SUCCESSFUL");
-    } catch (error) {
-      console.log("DISPATCH ERROR", error);
-    }
+    console.log("Updated Subway", editedSubway);
+    dispatch(editSubway(editedSubway));
   }
+
   return (
     <div>
       <div className="row justify-content-center">
@@ -65,12 +87,13 @@ function AddSubway() {
         </div>
       </div>
       <div className="adminFormDiv">
-        <h2 style={{ fontSize: "30px" }} className="adminHead text-center">
-          Add Subway
-        </h2>
+        <h1>Edit Subway</h1>
+        <h1>Subway Id = {subwayId}</h1>
         {loading && <Loader />}
-        {success && <Success success={"New subway added successfully"} />}
-        {error && <Error error={"Something went wrong"} />}
+        {editLoading && <Loader />}
+        {editSuccess && <Success success={"Subway updated successfully"} />}
+        {editError && <Error error={"Something went wrong"} />}
+
         <form onSubmit={handleSubmit}>
           <input
             required
@@ -89,7 +112,7 @@ function AddSubway() {
             placeholder="six inch varient price"
             value={sixInch}
             onChange={(e) => {
-              setSixInch(e.target.value);
+              setSixInch(parseInt(e.target.value));
             }}
           />
           <input
@@ -134,12 +157,10 @@ function AddSubway() {
             // review image field
           />
           <button type="submit" className="btn" style={{ marginTop: "20px" }}>
-            Add Subway
+            Save Changes
           </button>
         </form>
       </div>
     </div>
   );
 }
-
-export default AddSubway;
