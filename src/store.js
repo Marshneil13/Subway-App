@@ -22,6 +22,7 @@ import { loginUserReducer } from "./reducers/userReducers";
 import {
   getUserOrdersReducer,
   placeOrderReducer,
+  getAllOrdersReducer,
 } from "./reducers/orderReducer";
 
 const finalReducer = combineReducers({
@@ -35,6 +36,7 @@ const finalReducer = combineReducers({
   getSubwayByIdReducers: getSubwayByIdReducers,
   editSubwayReducers: editSubwayReducers,
   deleteSubwayReducers: deleteSubwayReducers,
+  getAllOrdersReducer: getAllOrdersReducer,
 });
 
 //in local storage data is stored in the form of a string

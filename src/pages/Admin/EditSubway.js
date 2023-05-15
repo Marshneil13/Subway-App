@@ -87,7 +87,9 @@ export default function EditSubway() {
         </div>
       </div>
       <div className="adminFormDiv">
-        <h1>Edit Subway</h1>
+        <h1 style={{ fontSize: "30px" }} className="adminHead">
+          Edit Subway
+        </h1>
         <h1>Subway Id = {subwayId}</h1>
         {loading && <Loader />}
         {editLoading && <Loader />}
