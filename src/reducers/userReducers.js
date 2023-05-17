@@ -43,3 +43,47 @@ export const loginUserReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const getAllUsersReducers = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case "GET_ALL_USERS_REQUEST":
+      return {
+        loading: true,
+        ...state,
+      };
+    case "GET_ALL_USERS_SUCCESS":
+      return {
+        loading: false,
+        users: action.payload,
+      };
+    case "GET_ALL_USERS_FAILED":
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const deleteUserReducers = (state = {}, action) => {
+  switch (action.type) {
+    case "DELETE_USER_REQUEST":
+      return {
+        deleteLoading: true,
+        ...state,
+      };
+    case "DELETE_USER_SUCCESS":
+      return {
+        deleteLoading: false,
+        deleteSuccess: true,
+      };
+    case "DELETE_USER_FAILED":
+      return {
+        deleteLoading: false,
+        deleteError: action.payload,
+      };
+    default:
+      return state;
+  }
+};

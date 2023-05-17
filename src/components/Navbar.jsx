@@ -2,14 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
-import { logoutUser } from "../actions/userActions";
+import { logoutUser, updateUserCart } from "../actions/userActions";
 // imported to access the state of the cartReducer from the Navbar
 
-function Navbar() {
+function Navbar({ cart }) {
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userState;
+  const cartItems = cartState.cartItems;
+  const userId = currentUser._id;
   const dispatch = useDispatch();
+  //dispatch is a synchronous operation
+
+  function handleLogout(cartItems, userId) {
+    dispatch(updateUserCart(cartItems, userId));
+    dispatch(logoutUser());
+  }
   return (
     <div className="navDiv">
       <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-white rounded">
@@ -29,7 +37,7 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
-            {currentUser ? (
+            {currentUser.name ? (
               <div className="dropdown">
                 <button
                   className="dropdown-btn dropdown-toggle"
@@ -51,7 +59,7 @@ function Navbar() {
                     className="dropdown-item"
                     href="/login"
                     onClick={() => {
-                      dispatch(logoutUser());
+                      handleLogout(cartItems, userId);
                     }}
                   >
                     <li>Logout</li>
@@ -70,7 +78,7 @@ function Navbar() {
               <a className="nav-link" href="/cart">
                 <button className="cart-btn">
                   <FaShoppingCart className="cart-icon" />
-                  {` ${cartState.cartItems.length}`}
+                  {` ${cart.length}`}
                 </button>
               </a>
             </li>

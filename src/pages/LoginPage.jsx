@@ -9,6 +9,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const loginState = useSelector((state) => state.loginUserReducer);
+
   const dispatch = useDispatch();
   const { loading, error } = loginState;
 
@@ -19,11 +20,12 @@ function LoginPage() {
     }
   });
   function login() {
-    const user = {
+    const userLogin = {
       email,
       password,
     };
-    dispatch(loginUser(user));
+    dispatch(loginUser(userLogin));
+    // localStorage.setItem("cartItems", cartItems);
   }
   return (
     <div>

@@ -23,11 +23,16 @@ import EditSubway from "./pages/Admin/EditSubway";
 function App() {
   const userState = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userState;
+  const cartState = useSelector((state) => state.cartReducer);
 
+  let cart = currentUser.cart ? currentUser.cart : cartState.cartItems;
+  localStorage.setItem("cartItems", JSON.stringify(cart));
+
+  console.log("USER MAIN", currentUser);
   console.log("USER is ADMIN", currentUser.isAdmin);
   return (
     <div className="App">
-      <Navbar />
+      <Navbar cart={cart} />
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<HomePage />} />

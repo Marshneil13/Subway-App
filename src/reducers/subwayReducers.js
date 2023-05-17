@@ -95,12 +95,12 @@ export const deleteSubwayReducers = (state = {}, action) => {
         deleteLoading: true,
         ...state,
       };
-    case "ADD_SUBWAY_SUCCESS":
+    case "DELETE_SUBWAY_SUCCESS":
       return {
         deleteLoading: false,
         deleteSuccess: true,
       };
-    case "ADD_SUBWAY_FAILED":
+    case "DELETE_SUBWAY_FAILED":
       return {
         deleteLoading: false,
         deleteError: action.payload,
