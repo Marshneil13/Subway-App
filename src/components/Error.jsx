@@ -1,18 +1,11 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Error({ error }) {
   return (
-    <div
-    //   style={{
-    //     height: "80vh",
-    //     display: "flex",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //   }}
-    >
-      <div className="alert alert-danger" role="alert" style={{}}>
-        {error}
-      </div>
+    <div>
+      <ToastContainer />
     </div>
   );
 }

@@ -2,22 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
-import { logoutUser, updateUserCart } from "../actions/userActions";
+import { logoutUser } from "../actions/userActions";
 // imported to access the state of the cartReducer from the Navbar
 
-function Navbar({ cart }) {
+function Navbar() {
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userState;
-  const cartItems = cartState.cartItems;
-  const userId = currentUser._id;
+  console.log("Navbar USer", currentUser);
   const dispatch = useDispatch();
-  //dispatch is a synchronous operation
-
-  function handleLogout(cartItems, userId) {
-    dispatch(updateUserCart(cartItems, userId));
-    dispatch(logoutUser());
-  }
+  //dispatch is a synchronous
   return (
     <div className="navDiv">
       <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-white rounded">
@@ -37,7 +31,7 @@ function Navbar({ cart }) {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
-            {currentUser.name ? (
+            {currentUser?.name ? (
               <div className="dropdown">
                 <button
                   className="dropdown-btn dropdown-toggle"
@@ -46,7 +40,7 @@ function Navbar({ cart }) {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  {currentUser.name}
+                  {currentUser?.name}
                 </button>
                 <div
                   className="dropdown-menu"
@@ -55,11 +49,16 @@ function Navbar({ cart }) {
                   <a className="dropdown-item" href="/orders">
                     Orders
                   </a>
+                  {currentUser?.isAdmin && (
+                    <a className="dropdown-item" href="/admin">
+                      Admin Panel
+                    </a>
+                  )}
                   <a
                     className="dropdown-item"
                     href="/login"
                     onClick={() => {
-                      handleLogout(cartItems, userId);
+                      dispatch(logoutUser());
                     }}
                   >
                     <li>Logout</li>
@@ -78,7 +77,7 @@ function Navbar({ cart }) {
               <a className="nav-link" href="/cart">
                 <button className="cart-btn">
                   <FaShoppingCart className="cart-icon" />
-                  {` ${cart.length}`}
+                  {` ${cartState.cartItems.length}`}
                 </button>
               </a>
             </li>

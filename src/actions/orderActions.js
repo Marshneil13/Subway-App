@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { type } from "os";
 export const placeOrder =
   (subtotal, name, address, city, pincode) => async (dispatch, getState) => {
@@ -48,6 +50,9 @@ export const getAllOrders = () => async (dispatch, getState) => {
     dispatch({ type: "GET_ALL_ORDERS_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "GET_ALL_ORDERS_FAILED", payload: error });
+    toast.error("Failed to load Orders", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   }
 };
 

@@ -15,7 +15,7 @@ function SubwayList() {
   const deleteSubwayState = useSelector((state) => state.deleteSubwayReducers);
 
   const { subways, error, loading } = subwayState;
-  const { deleteSuccess, deleteError, deleteLoading } = deleteSubwayState;
+  const { deleteSuccess, deleteError } = deleteSubwayState;
 
   useEffect(() => {
     dispatch(getAllSubways());
@@ -26,7 +26,7 @@ function SubwayList() {
     dispatch(deleteSubway(subwayId));
   }
   return (
-    <div className="admin col-md-10">
+    <div className="admin col-md-10" style={{ marginBottom: "90px" }}>
       <div className="row justify-content-center">
         <div className="col-md-12">
           <h2 style={{ fontSize: "40px" }}>Admin Panel</h2>
@@ -52,6 +52,8 @@ function SubwayList() {
       </h2>
       {loading && <Loader />}
       {error && <Error error="Something went wrong" />}
+      {deleteSuccess && <Success success={"Successfully removed subway"} />}
+      {deleteError && <Error error={"Failed to remove subway"} />}
       <table className="table table-bordered">
         <thead className="thead-dark">
           <tr>

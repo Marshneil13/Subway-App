@@ -1,3 +1,6 @@
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import axios from "axios";
 export const getAllSubways = () => async (dispatch) => {
   dispatch({ type: "GET_SUBWAYS_REQUEST" });
@@ -39,10 +42,16 @@ export const addSubway = (subway) => async (dispatch) => {
   try {
     const response = await axios.post("/api/subways/addsubway", { subway });
     console.log("Added Subway Successfully", response);
+    toast.success("Added Subway Successfully", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
     dispatch({ type: "ADD_SUBWAY_SUCCESS" });
   } catch (error) {
     dispatch({ type: "ADD_SUBWAY_FAILED", payload: error });
     console.log("Failed to add subway", error);
+    toast.error("Failed to Add Subway", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   }
 };
 
@@ -67,11 +76,17 @@ export const editSubway = (editedSubway) => async (dispatch) => {
       editedSubway,
     });
     console.log("Updated Subway Successfully", response);
+    toast.success("Updated Subway Successfully", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
     dispatch({ type: "EDIT_SUBWAY_SUCCESS" });
     // window.location.href = "/admin/subwaylist";
   } catch (error) {
     dispatch({ type: "EDIT_SUBWAY_FAILED", payload: error });
     console.log("Failed to edit subway", error);
+    toast.error("Failed to Edit Subway", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   }
 };
 
@@ -83,9 +98,15 @@ export const deleteSubway = (subwayId) => async (dispatch) => {
     });
     console.log("Subway deleted successfully", response);
     dispatch({ type: "DELETE_SUBWAY_SUCCESS" });
+    toast.success(`Subway deleted successfully`, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
     window.location.reload();
   } catch (error) {
     dispatch({ type: "DELETE_SUBWAY_FAILED", payload: error });
     console.log("Failed to delete subway", error);
+    toast.error("Failed to Delete Subway", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   }
 };

@@ -1,3 +1,5 @@
+import { state } from "../data/location";
+
 export const registerUserReducer = (state = {}, action) => {
   switch (action.type) {
     case "USER_REGISTER_REQUEST":
@@ -28,15 +30,21 @@ export const loginUserReducer = (state = {}, action) => {
         loading: true,
       };
     case "USER_LOGIN_SUCCESS":
+      console.log("Action", action);
+      const { currentUser, cartItems } = action.payload;
+      console.log("Payload Current USer", currentUser);
       return {
         loading: false,
         success: true,
-        currentUser: action.payload,
+        currentUser: currentUser,
+        cartItems: cartItems,
+        error: false,
       };
     case "USER_LOGIN_FAILED":
       return {
         loading: false,
         error: action.payload,
+        currentUser: {},
       };
 
     default:

@@ -19,20 +19,17 @@ import AddSubway from "./pages/Admin/AddSubway";
 import Success from "./components/Success";
 import SuccessPage from "./pages/SuccessPage";
 import EditSubway from "./pages/Admin/EditSubway";
+import Footer from "./components/Footer";
 
 function App() {
   const userState = useSelector((state) => state.loginUserReducer);
   const { currentUser } = userState;
-  const cartState = useSelector((state) => state.cartReducer);
-
-  let cart = currentUser.cart ? currentUser.cart : cartState.cartItems;
-  localStorage.setItem("cartItems", JSON.stringify(cart));
 
   console.log("USER MAIN", currentUser);
-  console.log("USER is ADMIN", currentUser.isAdmin);
+  console.log("USER is ADMIN", currentUser?.isAdmin);
   return (
     <div className="App">
-      <Navbar cart={cart} />
+      <Navbar />
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<HomePage />} />
@@ -40,10 +37,16 @@ function App() {
           <Route path="/register" exact element={<RegisterPage />} />
           <Route path="/login" exact element={<LoginPage />} />
           <Route path="/orders" exact element={<OrdersPage />} />
-          <Route path="/ordersuccess" exact element={<SuccessPage />} />
+          <Route
+            path="/ordersuccess"
+            exact
+            element={
+              currentUser?.name ? <SuccessPage /> : <Navigate to="/login" />
+            }
+          />
           <Route
             path="/admin"
-            element={currentUser.isAdmin ? <UsersList /> : <Navigate to="/" />}
+            element={currentUser?.isAdmin ? <UsersList /> : <Navigate to="/" />}
           />
           <Route path="/admin/userslist" exact element={<UsersList />} />
           <Route path="/admin/subwaylist" exact element={<SubwayList />} />
@@ -57,6 +60,7 @@ function App() {
           {/* we are not providing exact prop to the admin screen as there will be nested routes inside it */}
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }

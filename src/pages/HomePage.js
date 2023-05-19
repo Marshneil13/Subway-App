@@ -16,6 +16,8 @@ function HomePage() {
   //dispatch actions from the component
   const dispatch = useDispatch();
   const subwayState = useSelector((state) => state.getAllSubwaysReducers);
+  const cartState = useSelector((state) => state.cartReducer);
+  const { cartError } = cartState;
 
   const { subways, error, loading } = subwayState;
 
@@ -23,7 +25,8 @@ function HomePage() {
     dispatch(getAllSubways());
   }, []);
   return (
-    <div>
+    <div style={{ marginBottom: "60px" }}>
+      {cartError && <Error />}
       <Filter />
       <div className="row justify-content-center">
         {/* conditional rendering */}

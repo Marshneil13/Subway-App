@@ -22,7 +22,7 @@ const OrdersPage = () => {
             return (
               <div
                 className="col-md-8"
-                style={{ backgroundColor: "#eeedec", color: "orangered" }}
+                style={{ backgroundColor: "#eeedec", color: "#cc3700" }}
               >
                 <div className="flex-container">
                   <div className="text-left w-100 m-1">
@@ -54,7 +54,7 @@ const OrdersPage = () => {
                       Order Info
                     </h3>
                     <hr />
-                    <p>Order Amount : {order.orderAmount}</p>
+                    <p>Order Amount : {order.orderAmount} INR</p>
                     <p>Date : {order.createdAt.substring(0, 10)}</p>
                     <p>Payment Status : {order.paymentStatus}</p>
                     <p>Order Id : {order._id}</p>

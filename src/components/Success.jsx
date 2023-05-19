@@ -1,11 +1,11 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Success({ success }) {
   return (
     <div>
-      <div class="alert alert-success" role="alert">
-        {success}
-      </div>
+      <ToastContainer />
     </div>
   );
 }

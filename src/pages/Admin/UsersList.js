@@ -5,6 +5,7 @@ import Loader from "../../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, getAllUsers } from "../../actions/userActions";
 import { FaTrashAlt } from "react-icons/fa";
+import Success from "../../components/Success";
 
 const UsersList = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,8 @@ const UsersList = () => {
       </h1>
       {loading && <Loader />}
       {error && <Error error={"Something went wrong"} />}
+      {deleteError && <Error error={"Failed to delete user"} />}
+      {deleteSuccess && <Success success={"User deleted Successfully"} />}
       <table className="table table-striped table-bordered">
         <thead className="thead-dark">
           <tr>

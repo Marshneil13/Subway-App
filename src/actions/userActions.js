@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export const registerUser = async (dispatch, user) => {
   dispatch({ type: "USER_REGISTER_REQUEST" });
 
@@ -6,8 +8,14 @@ export const registerUser = async (dispatch, user) => {
     const response = await axios.post("/api/users/register", user);
     console.log(response);
     dispatch({ type: "USER_REGISTER_SUCCESS" });
+    toast.success("You have registered successfully!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   } catch (error) {
     dispatch({ type: "USER_REGISTER_FAILED", payload: error });
+    toast.error("Email already exists", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   }
 };
 
@@ -16,12 +24,19 @@ export const loginUser = (user) => async (dispatch) => {
 
   try {
     const response = await axios.post("/api/users/login", user);
-    console.log(response);
+    console.log("LOGIN RESPONSE", response.data);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: response.data });
-    localStorage.setItem("currentUser", JSON.stringify(response.data));
-    window.location.href = "/";
+    localStorage.setItem(
+      "currentUser",
+      JSON.stringify(response.data.currentUser)
+    );
+    // window.location.href = "/";
   } catch (error) {
     dispatch({ type: "USER_LOGIN_FAILED", payload: error });
+    console.log("Login Error", error);
+    toast.error("Invalid Credentials", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   }
 };
 
@@ -50,32 +65,15 @@ export const deleteUser = (userId) => async (dispatch) => {
     });
     console.log("User deleted successfully", response);
     dispatch({ type: "DELETE_USER_SUCCESS" });
+    toast.success("User deleted successfully", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
     window.location.reload();
   } catch (error) {
     dispatch({ type: "DELETE_USER_FAILED", payload: error });
     console.log("Failed to delete user", error);
-  }
-};
-
-export const updateUserCart = (cartItems, userId) => async (dispatch) => {
-  try {
-    const response = await axios.post("/api/users/updateusercart", {
-      cartItems,
-      userId,
+    toast.error("Failed to delete user", {
+      position: toast.POSITION.TOP_RIGHT,
     });
-    console.log("Updated user cart successfully", response);
-  } catch (error) {
-    console.log("Failed to update user cart");
-  }
-};
-
-export const getUserCart = (userId) => async (dispatch) => {
-  dispatch({ type: "GET_USER_CART_REQUEST" });
-  try {
-    const response = await axios.get(`/api/users/getusercart/${userId}`);
-    console.log("USER CART", response);
-    dispatch({ type: "GET_USER_CART_SUCCESS", payload: response.data });
-  } catch (error) {
-    dispatch({ type: "GET_USER_CART_FAILED", payload: error });
   }
 };
