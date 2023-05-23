@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cartReducer } from "../reducers/cartReducers";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
 import { addToCart } from "../actions/cartActions";
 import { deleteFromCart } from "../actions/cartActions";
+import { getUserCart } from "../actions/cartActions";
 import { toast } from "react-toastify";
 import Payment from "../components/Payment";
 
@@ -15,6 +16,10 @@ function CartPage() {
   const { currentUser } = userState;
   var subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserCart(currentUser?.email));
+  },[]);
+
   return (
     <div className="cartDiv">
       <div className="cartDivInner">
@@ -38,7 +43,12 @@ function CartPage() {
                       className="plusIcon"
                       onClick={() => {
                         dispatch(
-                          addToCart(item, item.varient, item.quantity + 1)
+                          addToCart(
+                            currentUser?.email,
+                            item,
+                            item.varient,
+                            item.quantity + 1
+                          )
                         );
                       }}
                     />{" "}
@@ -47,7 +57,12 @@ function CartPage() {
                       className="minusIcon"
                       onClick={() => {
                         dispatch(
-                          addToCart(item, item.varient, item.quantity - 1)
+                          addToCart(
+                            currentUser?.email,
+                            item,
+                            item.varient,
+                            item.quantity - 1
+                          )
                         );
                       }}
                     />
@@ -63,7 +78,7 @@ function CartPage() {
                   <FaTrashAlt
                     className="trashIcon"
                     onClick={() => {
-                      dispatch(deleteFromCart(item));
+                      dispatch(deleteFromCart(currentUser?.email, item));
                     }}
                   />
                 </div>

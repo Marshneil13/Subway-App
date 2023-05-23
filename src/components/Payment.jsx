@@ -27,7 +27,7 @@ function Payment({ subtotal }) {
     e.preventDefault();
     dispatch(placeOrder(subtotal, name, address, city, pincode));
     window.location.href = "/ordersuccess";
-    dispatch(emptyCart());
+    dispatch(emptyCart(currentUser?.email));
   }
   return (
     <div>

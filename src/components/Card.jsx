@@ -5,7 +5,7 @@ import { Modal, Button, ModalDialog } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 // import closeButton from "react-bootstrap";
 import { addToCart } from "../actions/cartActions";
-function Card({ subway }) {
+function Card({ email, subway }) {
   const [quantity, setQuantity] = useState(1);
   const [varient, setVarient] = useState("six inch");
   const [show, setShow] = useState(false);
@@ -15,7 +15,7 @@ function Card({ subway }) {
   const dispatch = useDispatch();
 
   function addToCartFunction() {
-    dispatch(addToCart(subway, varient, quantity));
+    dispatch(addToCart(email, subway, varient, quantity));
   }
   return (
     <div className="card-div">

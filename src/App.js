@@ -36,7 +36,7 @@ function App() {
           <Route path="/cart" exact element={<CartPage />} />
           <Route path="/register" exact element={<RegisterPage />} />
           <Route path="/login" exact element={<LoginPage />} />
-          <Route path="/orders" exact element={<OrdersPage />} />
+          <Route path="/orders" exact element={currentUser?.name ? <OrdersPage /> : <Navigate to="/login"/>} />
           <Route
             path="/ordersuccess"
             exact
@@ -48,14 +48,14 @@ function App() {
             path="/admin"
             element={currentUser?.isAdmin ? <UsersList /> : <Navigate to="/" />}
           />
-          <Route path="/admin/userslist" exact element={<UsersList />} />
-          <Route path="/admin/subwaylist" exact element={<SubwayList />} />
-          <Route path="/admin/orderslist" exact element={<OrdersList />} />
-          <Route path="/admin/addsubway" exact element={<AddSubway />} />
+          <Route path="/admin/userslist" exact element={currentUser?.isAdmin ? <UsersList /> : <Navigate to="/" />} />
+          <Route path="/admin/subwaylist" exact element={currentUser?.isAdmin ? <SubwayList /> : <Navigate to="/" />} />
+          <Route path="/admin/orderslist" exact element={currentUser?.isAdmin ? <OrdersList /> : <Navigate to="/" />} />
+          <Route path="/admin/addsubway" exact element={currentUser?.isAdmin ? <AddSubway /> : <Navigate to="/" />} />
           <Route
             path="/admin/editsubway/:subwayid"
             exact
-            element={<EditSubway />}
+            element={currentUser?.isAdmin ? <EditSubway /> : <Navigate to="/" />}
           />
           {/* we are not providing exact prop to the admin screen as there will be nested routes inside it */}
         </Routes>

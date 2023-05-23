@@ -30,6 +30,7 @@ export const loginUser = (user) => async (dispatch) => {
       "currentUser",
       JSON.stringify(response.data.currentUser)
     );
+    localStorage.setItem("cartItems", JSON.stringify(response.data.cartItems));
     // window.location.href = "/";
   } catch (error) {
     dispatch({ type: "USER_LOGIN_FAILED", payload: error });

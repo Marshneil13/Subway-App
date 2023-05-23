@@ -17,6 +17,8 @@ function HomePage() {
   const dispatch = useDispatch();
   const subwayState = useSelector((state) => state.getAllSubwaysReducers);
   const cartState = useSelector((state) => state.cartReducer);
+  const userState = useSelector((state) => state.loginUserReducer);
+  const { currentUser } = userState;
   const { cartError } = cartState;
 
   const { subways, error, loading } = subwayState;
@@ -39,7 +41,7 @@ function HomePage() {
             return (
               <div className="col-md-3 m-5" key={subway._id}>
                 {/* Each child in a list should have a unique "key" prop. */}
-                <Card subway={subway} />
+                <Card email={currentUser?.email} subway={subway} />
               </div>
             );
           })

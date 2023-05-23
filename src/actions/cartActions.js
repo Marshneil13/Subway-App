@@ -1,6 +1,8 @@
+import axios from "axios";
+
 export const addToCart =
-  (subway, varient, quantity) => (dispatch, getState) => {
-    var cartItem = {
+  (email, subway, varient, quantity) => async (dispatch, getState) => {
+    var Item = {
       name: subway.name,
       _id: subway._id,
       image: subway.image,
@@ -13,28 +15,54 @@ export const addToCart =
       // so that we can easily change the quantity of the selected item
     };
 
-    if (cartItem.quantity > 10) {
+    if (Item.quantity > 10) {
       alert("Maximum quantity is 10");
-    } else if (cartItem.quantity < 1) {
+    } else if (Item.quantity < 1) {
       dispatch({ type: "DELETE_FROM_CART", payload: subway });
     } else {
-      dispatch({ type: "ADD_TO_CART", payload: cartItem });
+      dispatch({ type: "ADD_TO_CART", payload: Item });
     }
 
     //getState used to get the variables and reducers from the store
     const cartItems = getState().cartReducer.cartItems;
+    const response = await axios.post("/api/cart/updateusercart", {
+      cartItems: cartItems,
+      userEmail: email,
+    });
     //setting data in the local storage
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
-export const deleteFromCart = (subway) => (dispatch, getState) => {
+export const deleteFromCart = (email, subway) => async (dispatch, getState) => {
   dispatch({ type: "DELETE_FROM_CART", payload: subway });
   const cartItems = getState().cartReducer.cartItems;
+  const response = await axios.post("/api/cart/updateusercart", {
+    cartItems: cartItems,
+    userEmail: email,
+  });
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
-export const emptyCart = () => (dispatch, getState) => {
+export const emptyCart = (email) => async (dispatch, getState) => {
   dispatch({ type: "EMPTY_CART" });
   const cartItems = getState().cartReducer.cartItems;
+  const response = await axios.post("/api/cart/updateusercart", {
+    cartItems: cartItems,
+    userEmail: email,
+  });
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+};
+
+export const getUserCart = (userEmail) => async (dispatch) => {
+  dispatch({ type: "GET_USER_CART_REQUEST" });
+  try {
+    const response = await axios.post("/api/cart/getusercart", {
+      userEmail,
+    });
+    console.log("RESPONSE", response);
+    dispatch({ type: "GET_USER_CART_SUCCESS", payload: response.data });
+    localStorage.setItem("cartItems", JSON.stringify(response.data));
+  } catch (error) {
+    dispatch({ type: "GET_USER_CART_FAILED", payload: error });
+  }
 };

@@ -9,13 +9,18 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const loginState = useSelector((state) => state.loginUserReducer);
+  const {currentUser, cartItems, loading , error} = loginState;
 
   const dispatch = useDispatch();
-  const { loading, error } = loginState;
 
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
+      if(currentUser?.isAdmin)
+      {
+        window.location.href = "/admin/userslist";
+      }else{
       window.location.href = "/";
+      }
       // the above line redirects to the homepage
     }
   });

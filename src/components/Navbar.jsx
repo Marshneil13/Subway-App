@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
 import { logoutUser } from "../actions/userActions";
+import { getUserCart } from "../actions/cartActions";
 // imported to access the state of the cartReducer from the Navbar
 
 function Navbar() {
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.loginUserReducer);
+  const userCartState = useSelector((state) => state.getUserCartReducers);
   const { currentUser } = userState;
+  const { cartItems } = userCartState;
   console.log("Navbar USer", currentUser);
   const dispatch = useDispatch();
   //dispatch is a synchronous
+  
+  useEffect(() => {
+    dispatch(getUserCart(currentUser?.email));
+  },[]);
+
   return (
     <div className="navDiv">
       <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-white rounded">
