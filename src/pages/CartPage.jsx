@@ -17,8 +17,8 @@ function CartPage() {
   var subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserCart(currentUser?.email));
-  },[]);
+    if (currentUser.email) dispatch(getUserCart(currentUser?.email));
+  }, []);
 
   return (
     <div className="cartDiv">

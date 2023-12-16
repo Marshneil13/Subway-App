@@ -15,10 +15,10 @@ function Navbar() {
   console.log("Navbar USer", currentUser);
   const dispatch = useDispatch();
   //dispatch is a synchronous
-  
+
   useEffect(() => {
-    dispatch(getUserCart(currentUser?.email));
-  },[]);
+    if (currentUser.email) dispatch(getUserCart(currentUser?.email));
+  }, []);
 
   return (
     <div className="navDiv">
