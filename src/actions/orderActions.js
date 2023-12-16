@@ -9,15 +9,18 @@ export const placeOrder =
     const currentUser = getState().loginUserReducer.currentUser;
     const cartItems = getState().cartReducer.cartItems;
     try {
-      const response = await axios.post("/api/orders/placeorder", {
-        subtotal,
-        name,
-        address,
-        city,
-        pincode,
-        currentUser,
-        cartItems,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_HTTP_PROXY}api/orders/placeorder`,
+        {
+          subtotal,
+          name,
+          address,
+          city,
+          pincode,
+          currentUser,
+          cartItems,
+        }
+      );
       dispatch({ type: "PLACE_ORDER_SUCCESS" });
       console.log("Placed order details", response);
     } catch (error) {
@@ -31,9 +34,12 @@ export const getUserOrders = () => async (dispatch, getState) => {
   dispatch({ type: "GET_USER_ORDERS_REQUEST" });
 
   try {
-    const response = await axios.post("/api/orders/getuserorders", {
-      userId: currentUser._id,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/orders/getuserorders`,
+      {
+        userId: currentUser._id,
+      }
+    );
     console.log("RESPONSE", response);
     dispatch({ type: "GET_USER_ORDERS_SUCCESS", payload: response.data });
   } catch (error) {
@@ -45,7 +51,9 @@ export const getAllOrders = () => async (dispatch, getState) => {
   dispatch({ type: "GET_ALL_ORDERS_REQUEST" });
 
   try {
-    const response = await axios.get("/api/orders/getallorders");
+    const response = await axios.get(
+      `${process.env.REACT_APP_HTTP_PROXY}api/orders/getallorders`
+    );
     console.log("RESPONSE", response);
     dispatch({ type: "GET_ALL_ORDERS_SUCCESS", payload: response.data });
   } catch (error) {
@@ -58,9 +66,14 @@ export const getAllOrders = () => async (dispatch, getState) => {
 
 export const deliverOrder = (orderId) => async (dispatch) => {
   try {
-    const response = await axios.post("/api/orders/deliverorder", { orderId });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/orders/deliverorder`,
+      { orderId }
+    );
     console.log("Delete Response", response);
-    const orders = await axios.get("/api/orders/getallorders");
+    const orders = await axios.get(
+      `${process.env.REACT_APP_HTTP_PROXY}api/orders/getallorders`
+    );
     dispatch({ type: "GET_ALL_ORDERS_SUCCESS", payload: orders.data });
   } catch (error) {
     console.log("Deletion Error", error);

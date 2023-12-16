@@ -5,7 +5,10 @@ export const registerUser = async (dispatch, user) => {
   dispatch({ type: "USER_REGISTER_REQUEST" });
 
   try {
-    const response = await axios.post("/api/users/register", user);
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/users/register`,
+      user
+    );
     console.log(response);
     dispatch({ type: "USER_REGISTER_SUCCESS" });
     toast.success("You have registered successfully!", {
@@ -23,7 +26,10 @@ export const loginUser = (user) => async (dispatch) => {
   dispatch({ type: "USER_LOGIN_REQUEST" });
 
   try {
-    const response = await axios.post("/api/users/login", user);
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/users/login`,
+      user
+    );
     console.log("LOGIN RESPONSE", response.data);
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: response.data });
     localStorage.setItem(
@@ -50,7 +56,9 @@ export const getAllUsers = () => async (dispatch) => {
   dispatch({ type: "GET_ALL_USERS_REQUEST" });
 
   try {
-    const response = await axios.get("/api/users/getallusers");
+    const response = await axios.get(
+      `${process.env.REACT_APP_HTTP_PROXY}api/users/getallusers`
+    );
     console.log("RESPONSE", response);
     dispatch({ type: "GET_ALL_USERS_SUCCESS", payload: response.data });
   } catch (error) {
@@ -61,9 +69,12 @@ export const getAllUsers = () => async (dispatch) => {
 export const deleteUser = (userId) => async (dispatch) => {
   dispatch({ type: "DELETE_USER_REQUEST" });
   try {
-    const response = await axios.post("/api/users/deleteuser", {
-      userId,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/users/deleteuser`,
+      {
+        userId,
+      }
+    );
     console.log("User deleted successfully", response);
     dispatch({ type: "DELETE_USER_SUCCESS" });
     toast.success("User deleted successfully", {

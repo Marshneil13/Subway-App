@@ -25,10 +25,13 @@ export const addToCart =
 
     //getState used to get the variables and reducers from the store
     const cartItems = getState().cartReducer.cartItems;
-    const response = await axios.post("/api/cart/updateusercart", {
-      cartItems: cartItems,
-      userEmail: email,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/cart/updateusercart`,
+      {
+        cartItems: cartItems,
+        userEmail: email,
+      }
+    );
     //setting data in the local storage
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
@@ -36,29 +39,38 @@ export const addToCart =
 export const deleteFromCart = (email, subway) => async (dispatch, getState) => {
   dispatch({ type: "DELETE_FROM_CART", payload: subway });
   const cartItems = getState().cartReducer.cartItems;
-  const response = await axios.post("/api/cart/updateusercart", {
-    cartItems: cartItems,
-    userEmail: email,
-  });
+  const response = await axios.post(
+    `${process.env.REACT_APP_HTTP_PROXY}api/cart/updateusercart`,
+    {
+      cartItems: cartItems,
+      userEmail: email,
+    }
+  );
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
 export const emptyCart = (email) => async (dispatch, getState) => {
   dispatch({ type: "EMPTY_CART" });
   const cartItems = getState().cartReducer.cartItems;
-  const response = await axios.post("/api/cart/updateusercart", {
-    cartItems: cartItems,
-    userEmail: email,
-  });
+  const response = await axios.post(
+    `${process.env.REACT_APP_HTTP_PROXY}api/cart/updateusercart`,
+    {
+      cartItems: cartItems,
+      userEmail: email,
+    }
+  );
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
 export const getUserCart = (userEmail) => async (dispatch) => {
   dispatch({ type: "GET_USER_CART_REQUEST" });
   try {
-    const response = await axios.post("/api/cart/getusercart", {
-      userEmail,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/cart/getusercart`,
+      {
+        userEmail,
+      }
+    );
     console.log("RESPONSE", response);
     dispatch({ type: "GET_USER_CART_SUCCESS", payload: response.data });
     localStorage.setItem("cartItems", JSON.stringify(response.data));

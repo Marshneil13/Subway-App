@@ -6,7 +6,9 @@ export const getAllSubways = () => async (dispatch) => {
   dispatch({ type: "GET_SUBWAYS_REQUEST" });
 
   try {
-    const response = await axios.get("/api/subways/getallsubways");
+    const response = await axios.get(
+      `${process.env.REACT_APP_HTTP_PROXY}api/subways/getallsubways`
+    );
     console.log("RESPONSE", response);
     dispatch({ type: "GET_SUBWAYS_SUCCESS", payload: response.data });
   } catch (error) {
@@ -21,7 +23,9 @@ export const filterSubways = (searchKey, category) => async (dispatch) => {
   dispatch({ type: "GET_SUBWAYS_REQUEST" });
 
   try {
-    const response = await axios.get("/api/subways/getallsubways");
+    const response = await axios.get(
+      `${process.env.REACT_APP_HTTP_PROXY}api/subways/getallsubways`
+    );
     filteredSubways = response.data.filter((sub) =>
       sub.name.toLowerCase().includes(searchKey.toLowerCase())
     );
@@ -40,7 +44,10 @@ export const filterSubways = (searchKey, category) => async (dispatch) => {
 export const addSubway = (subway) => async (dispatch) => {
   dispatch({ type: "ADD_SUBWAY_REQUEST" });
   try {
-    const response = await axios.post("/api/subways/addsubway", { subway });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/subways/addsubway`,
+      { subway }
+    );
     console.log("Added Subway Successfully", response);
     toast.success("Added Subway Successfully", {
       position: toast.POSITION.TOP_RIGHT,
@@ -59,9 +66,12 @@ export const getSubwayById = (subwayId) => async (dispatch) => {
   dispatch({ type: "GET_SUBWAY_BY_ID_REQUEST" });
 
   try {
-    const response = await axios.post("/api/subways/getsubwaybyid", {
-      subwayId,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/subways/getsubwaybyid`,
+      {
+        subwayId,
+      }
+    );
     console.log("RESPONSE", response);
     dispatch({ type: "GET_SUBWAY_BY_ID_SUCCESS", payload: response.data });
   } catch (error) {
@@ -72,9 +82,12 @@ export const getSubwayById = (subwayId) => async (dispatch) => {
 export const editSubway = (editedSubway) => async (dispatch) => {
   dispatch({ type: "EDIT_SUBWAY_REQUEST" });
   try {
-    const response = await axios.post("/api/subways/editsubway", {
-      editedSubway,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/subways/editsubway`,
+      {
+        editedSubway,
+      }
+    );
     console.log("Updated Subway Successfully", response);
     toast.success("Updated Subway Successfully", {
       position: toast.POSITION.TOP_RIGHT,
@@ -93,9 +106,12 @@ export const editSubway = (editedSubway) => async (dispatch) => {
 export const deleteSubway = (subwayId) => async (dispatch) => {
   dispatch({ type: "DELETE_SUBWAY_REQUEST" });
   try {
-    const response = await axios.post("/api/subways/deletesubway", {
-      subwayId,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_HTTP_PROXY}api/subways/deletesubway`,
+      {
+        subwayId,
+      }
+    );
     console.log("Subway deleted successfully", response);
     dispatch({ type: "DELETE_SUBWAY_SUCCESS" });
     toast.success(`Subway deleted successfully`, {
